@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    .error { color: red; }
+    .result { color: green; }
+    form { margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+  <h1>Simple Calculator</h1>
+  <form method="post" action="/calculator">
+    <input type="text" name="n1" value="<%= n1 %>" placeholder="First number" required>
+    <select name="op">
+      <option value="add" <%= op === 'add' ? 'selected' : '' %>>+</option>
+      <option value="subtract" <%= op === 'subtract' ? 'selected' : '' %>>-</option>
+      <option value="multiply" <%= op === 'multiply' ? 'selected' : '' %>>×</option>
+      <option value="divide" <%= op === 'divide' ? 'selected' : '' %>>÷</option>
+    </select>
+    <input type="text" name="n2" value="<%= n2 %>" placeholder="Second number" required>
+    <button type="submit">Calculate</button>
+  </form>
+  <% if (error) { %>
+    <div class="error"><%= error %></div>
+  <% } %>
+  <% if (result !== null && !error) { %>
+    <div class="result">Result: <%= result %></div>
+  <% } %>
+</body>
+</html>
